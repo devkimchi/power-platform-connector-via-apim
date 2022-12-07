@@ -66,6 +66,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     uses: ./.github/workflows/workflow_call_deploy_fncapp.yml
     needs:
+    - call_set_matrix
     - call_build_test_upload_from_dispatch
     secrets: inherit
     with:
@@ -88,6 +89,7 @@ jobs:
     if: github.event_name == 'push'
     uses: ./.github/workflows/workflow_call_deploy_fncapp.yml
     needs:
+    - call_set_matrix
     - call_build_test_upload_from_push
     secrets: inherit
     with:
