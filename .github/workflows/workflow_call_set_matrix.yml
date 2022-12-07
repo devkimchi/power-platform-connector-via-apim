@@ -1,0 +1,36 @@
+name: 'On Called for Building Matrix'
+
+on:
+  workflow_call:
+    inputs:
+      matrix_path:
+        type: string
+        required: false
+        description: File path that contains the matrix JSON array.
+        default: './infra/matrix.json'
+    outputs:
+      matrix_json:
+        description: function app names in the format of JSON string array
+        value: ${{ jobs.build_matrix.outputs.matrix_json }}
+
+jobs:
+  build_matrix:
+    runs-on: ubuntu-latest
+
+    outputs:
+      matrix_json: ${{ steps.build_json.outputs.matrix_json }}
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+
+    - name: Build JSON array for matrix
+      id: build_json
+      shell: pwsh
+      run: |
+        $json = Get-Content -Path ${{ inputs.matrix_path }} -Raw | `
+            ConvertFrom-Json -NoEnumerate | `
+            ConvertTo-Json -Compress | `
+            ConvertTo-Json
+        
+        echo "::set-output name=matrix_json::$json"

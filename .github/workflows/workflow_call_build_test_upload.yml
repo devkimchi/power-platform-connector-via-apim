@@ -1,8 +1,12 @@
-name: 'On Called for Build & Test & Upload'
+name: 'On Called for Doing Build & Test & Upload'
 
 on:
   workflow_call:
     inputs:
+      matrix_json:
+        type: string
+        required: true
+        description: Matrix JSON array
       artifact_name:
         type: string
         required: false
@@ -20,7 +24,7 @@ jobs:
 
     strategy:
       matrix:
-        app: [ { "name": "apikeyauth", "suffix": "api-key-auth", "path": "ApiKeyAuth", "nv": "API_KEY_AUTH" } ]
+        app: ${{ fromJson(inputs.matrix_json) }}
 
     steps:
     - name: Checkout the repo

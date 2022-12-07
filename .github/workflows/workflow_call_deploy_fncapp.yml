@@ -1,8 +1,12 @@
-name: Deploy Function Apps to Azure
+name: 'On Called for Deploying Apps to Azure'
 
 on:
   workflow_call:
     inputs:
+      matrix_json:
+        type: string
+        required: true
+        description: Matrix JSON array
       artifact_name:
         type: string
         required: false
@@ -24,7 +28,7 @@ jobs:
 
     strategy:
       matrix:
-        app: [ { "name": "apikeyauth", "suffix": "api-key-auth", "path": "ApiKeyAuth", "nv": "API_KEY_AUTH" } ]
+        app: ${{ fromJson(inputs.matrix_json) }}
 
     env:
       AZURE_FNCAPP_NAME: 'fncapp-${{ secrets.AZURE_ENV_NAME }}-${{ matrix.app.suffix }}'
