@@ -1,0 +1,68 @@
+name: 'On Called for Build & Test & Upload'
+
+on:
+  workflow_call:
+    inputs:
+      artifact_name:
+        type: string
+        required: false
+        description: Artifact name
+        default: 'app'
+      is_pullrequest:
+        type: string
+        required: false
+        description: Value indicating whether the caller event is pull request or not
+        default: 'false'
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        app: [ { "name": "apikeyauth", "suffix": "api-key-auth", "path": "ApiKeyAuth", "nv": "API_KEY_AUTH" } ]
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.x
+
+    - name: Restore NuGet packages
+      shell: bash
+      run: |
+        dotnet restore .
+
+    - name: Build solution
+      shell: bash
+      run: |
+        dotnet build . -c Release
+
+    - name: Test solution
+      shell: bash
+      run: |
+        dotnet test . -c Release
+
+    - name: Create artifacts
+      shell: bash
+      run: |
+        dotnet publish -c Release
+
+    - name: Add app paths to env
+      if: inputs.is_pullrequest == 'false'
+      shell: pwsh
+      run: |
+        $appPath = "src/${{ matrix.app.path }}/bin/Release/net6.0/publish"
+
+        echo "APP_PATH=$appPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+
+    - name: Upload app artifact
+      if: inputs.is_pullrequest == 'false'
+      uses: actions/upload-artifact@v2
+      with:
+        name: "${{ inputs.artifact_name }}-${{ matrix.app.name }}"
+        path: "${{ github.workspace }}/${{ env.APP_PATH }}"
+        retention-days: 3
