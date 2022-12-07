@@ -9,6 +9,7 @@ param apiManagementNameValueValue string
 param apiManagementApiName string
 param apiManagementApiDisplayName string
 param apiManagementApiDescription string
+param apiManagementApiSubscriptionRequired bool = false
 param apiManagementApiServiceUrl string
 param apiManagementApiPath string
 @allowed([
@@ -51,7 +52,7 @@ var apiManagement = {
         description: apiManagementApiDescription
         serviceUrl: apiManagementApiServiceUrl
         path: apiManagementApiPath
-        subscriptionRequired: false
+        subscriptionRequired: apiManagementApiSubscriptionRequired
         format: apiManagementApiFormat
         value: apiManagementApiValue
         policy: {

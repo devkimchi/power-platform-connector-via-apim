@@ -26,7 +26,7 @@ namespace ApiKeyAuthApp
 
         [FunctionName(nameof(ApiKeyHttpTrigger.GetProfile))]
         [OpenApiOperation(operationId: "Profile", tags: new[] { "profile" })]
-        [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "x-functions-key", In = OpenApiSecurityLocationType.Header)]
+        // [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "x-functions-key", In = OpenApiSecurityLocationType.Header)]
         [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The **Name** parameter")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(ProfileResponse), Description = "The OK response")]
         public async Task<IActionResult> GetProfile(

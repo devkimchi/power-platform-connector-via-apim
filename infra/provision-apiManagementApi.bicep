@@ -9,6 +9,7 @@ param apiManagementNameValueValue string
 param apiManagementApiName string
 param apiManagementApiDisplayName string
 param apiManagementApiDescription string
+param apiManagementApiSubscriptionRequired bool = false
 param apiManagementApiServiceUrl string
 param apiManagementApiPath string
 @allowed([
@@ -46,6 +47,7 @@ module apimapi './apiManagementApi.bicep' = {
         apiManagementApiName: apiManagementApiName
         apiManagementApiDisplayName: apiManagementApiDisplayName
         apiManagementApiDescription: apiManagementApiDescription
+        apiManagementApiSubscriptionRequired: apiManagementApiSubscriptionRequired
         apiManagementApiServiceUrl: apiManagementApiServiceUrl
         apiManagementApiPath: apiManagementApiPath
         apiManagementApiFormat: apiManagementApiFormat

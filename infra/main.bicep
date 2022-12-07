@@ -19,6 +19,7 @@ var apps = [
         apiPath: 'apikeyauth'
         apiFormat: 'openapi+json-link'
         apiExtension: 'json'
+        apiSubscription: true
     }
 ]
 var storageContainerName = 'openapis'
@@ -75,6 +76,7 @@ module apis './provision-apiManagementApi.bicep' = [for (app, index) in apps: {
         apiManagementApiName: app.apiName
         apiManagementApiDisplayName: app.apiName
         apiManagementApiDescription: app.apiName
+        apiManagementApiSubscriptionRequired: app.apiSubscription
         apiManagementApiServiceUrl: 'https://fncapp-${name}-${app.suffix}.azurewebsites.net/api'
         apiManagementApiPath: app.apiPath
         apiManagementApiFormat: app.apiFormat
