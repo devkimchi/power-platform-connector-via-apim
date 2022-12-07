@@ -12,7 +12,7 @@ pipeline:
 
 services:
   apikeyauth:
-    project: './src/ApiKeyAuth'
+    project: './src/ApiKeyAuthApp'
     host: function
     language: csharp
     resourceName: fncapp-ppapim-api-key-auth

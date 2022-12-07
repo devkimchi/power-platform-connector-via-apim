@@ -2,6 +2,8 @@ param name string
 param location string = resourceGroup().location
 
 param storageContainerName string
+param gitHubUsername string
+param gitHubRepositoryName string
 param apiManagementPublisherName string
 param apiManagementPublisherEmail string
 @allowed([
@@ -46,6 +48,8 @@ module apim './apiManagement.bicep' = {
         location: location
         appInsightsId: appinsapiManagement.outputs.id
         appInsightsInstrumentationKey: appinsapiManagement.outputs.instrumentationKey
+        gitHubUsername: gitHubUsername
+        gitHubRepositoryName: gitHubRepositoryName
         apiManagementPublisherName: apiManagementPublisherName
         apiManagementPublisherEmail: apiManagementPublisherEmail
         apiManagementPolicyFormat: apiManagementPolicyFormat

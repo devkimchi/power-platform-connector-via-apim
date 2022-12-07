@@ -35,6 +35,8 @@ module apim './provision-apiManagement.bicep' = {
         name: name
         location: location
         storageContainerName: storageContainerName
+        gitHubUsername: gitHubUsername
+        gitHubRepositoryName: gitHubRepositoryName
         apiManagementPublisherName: apiManagementPublisherName
         apiManagementPublisherEmail: apiManagementPublisherEmail
         apiManagementPolicyFormat: 'xml-link'

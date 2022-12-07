@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -6,6 +6,8 @@
 
     <AssemblyName>ApiKeyAuthApp</AssemblyName>
     <RootNamespace>ApiKeyAuthApp</RootNamespace>
+
+    <UserSecretsId>44a8377d-3650-42c2-aa2c-2c5b2eb85d49</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

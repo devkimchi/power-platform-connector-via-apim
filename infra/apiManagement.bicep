@@ -5,6 +5,9 @@ param appInsightsId string
 @secure()
 param appInsightsInstrumentationKey string
 
+param gitHubUsername string
+param gitHubRepositoryName string
+
 param apiManagementPublisherName string
 param apiManagementPublisherEmail string
 
@@ -30,6 +33,8 @@ var apiManagement = {
     skuCapacity: 0
     publisherName: apiManagementPublisherName
     publisherEmail: apiManagementPublisherEmail
+    gitHubUsername: gitHubUsername
+    gitHubRepositoryName: gitHubRepositoryName
     policyFormat: apiManagementPolicyFormat
     policyValue: apiManagementPolicyValue
 }
@@ -38,6 +43,14 @@ var dicts = [
     {
         name: 'RESOURCE_NAME'
         value: apiManagement.name
+    }
+    {
+        name: 'GITHUB_USERNAME'
+        value: apiManagement.gitHubUsername
+    }
+    {
+        name: 'GITHUB_REPOSITORY_NAME'
+        value: apiManagement.gitHubRepositoryName
     }
 ]
 
