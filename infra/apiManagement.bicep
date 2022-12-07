@@ -92,6 +92,9 @@ resource apimlogger 'Microsoft.ApiManagement/service/loggers@2021-08-01' = {
 
 resource apimpolicy 'Microsoft.ApiManagement/service/policies@2021-08-01' = {
     name: '${apim.name}/policy'
+    dependsOn: [
+        apimNamedValue
+    ]
     properties: {
         format: apiManagement.policyFormat
         value: apiManagement.policyValue
