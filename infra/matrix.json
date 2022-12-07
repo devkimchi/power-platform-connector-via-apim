@@ -2,7 +2,7 @@
   {
     "name": "apikeyauth",
     "suffix": "api-key-auth",
-    "path": "ApiKeyAuth",
+    "path": "ApiKeyAuthApp",
     "nv": "API_KEY_AUTH"
   }
 ]
