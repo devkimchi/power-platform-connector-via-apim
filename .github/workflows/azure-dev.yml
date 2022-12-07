@@ -30,7 +30,7 @@ on:
       #   description: 'Azure service principal ID'
       #   default: ''
 
-permissions: write-all
+# permissions: write-all
 
 jobs:
   # Set matrix #
@@ -40,23 +40,24 @@ jobs:
       matrix_path: './infra/matrix.json'
 
   # GitHub Workflow Dispatch #
-  call_set_secrets:
-    if: github.event_name == 'workflow_dispatch'
-    uses: ./.github/workflows/workflow_call_set_secrets.yml
-    needs:
-    - call_set_matrix
-    secrets: inherit
-    with:
-      azure_env_name: ${{ github.event.inputs.azure_env_name }}
-      azure_location: ${{ github.event.inputs.azure_location }}
-      azure_subscription_id: ${{ github.event.inputs.azure_subscription_id }}
-      # azure_principal_id: ${{ github.event.inputs.azure_principal_id }}
+  # call_set_secrets:
+  #   if: github.event_name == 'workflow_dispatch'
+  #   uses: ./.github/workflows/workflow_call_set_secrets.yml
+  #   needs:
+  #   - call_set_matrix
+  #   secrets: inherit
+  #   with:
+  #     azure_env_name: ${{ github.event.inputs.azure_env_name }}
+  #     azure_location: ${{ github.event.inputs.azure_location }}
+  #     azure_subscription_id: ${{ github.event.inputs.azure_subscription_id }}
+  #     # azure_principal_id: ${{ github.event.inputs.azure_principal_id }}
 
   call_build_test_upload_from_dispatch:
     if: github.event_name == 'workflow_dispatch'
     uses: ./.github/workflows/workflow_call_build_test_upload.yml
     needs:
-    - call_set_secrets
+    - call_set_matrix
+    # - call_set_secrets
     with:
       matrix_json: ${{ needs.call_set_matrix.outputs.matrix_json }}
       artifact_name: 'app'
