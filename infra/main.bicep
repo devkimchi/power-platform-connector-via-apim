@@ -15,7 +15,7 @@ param gitHubBranchName string = 'main'
 var apps = [
     {
         suffix: 'api-key-auth'
-        apiName: 'APIKEYAUTH'
+        apiName: 'API-KEY-AUTH'
         apiPath: 'apikeyauth'
         apiFormat: 'openapi+json-link'
         apiExtension: 'json'
