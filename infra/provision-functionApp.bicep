@@ -45,7 +45,8 @@ module csplan './consumptionPlan.bicep' = {
 module fncapp './functionApp.bicep' = {
     name: 'FunctionApp_FunctionApp_${suffix}'
     params: {
-        name: longname
+        name: name
+        suffix: suffix
         location: location
         apimApiPath: apimApiPath
         storageAccountConnectionString: st.outputs.connectionString

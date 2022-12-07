@@ -39,12 +39,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "function_key": []
-          }
-        ]
+        }
       }
     }
   },
@@ -57,13 +52,6 @@
             "type": "string"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "function_key": {
-        "type": "apiKey",
-        "name": "x-functions-key",
-        "in": "header"
       }
     }
   }

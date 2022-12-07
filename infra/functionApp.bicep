@@ -1,4 +1,5 @@
 param name string
+param suffix string
 param location string = resourceGroup().location
 
 @secure()
@@ -32,7 +33,7 @@ var consumption = {
 }
 
 var functionApp = {
-    name: 'fncapp-${name}'
+    name: 'fncapp-${name}-${suffix}'
     location: location
 }
 
