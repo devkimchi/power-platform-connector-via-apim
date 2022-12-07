@@ -30,7 +30,6 @@ jobs:
       run: |
         $json = Get-Content -Path ${{ inputs.matrix_path }} -Raw | `
             ConvertFrom-Json -NoEnumerate | `
-            ConvertTo-Json -Compress | `
-            ConvertTo-Json
+            ConvertTo-Json -Compress
         
-        echo "::set-output name=matrix_json::$json"
+        echo "matrix_json=$json" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf-8 -Append
