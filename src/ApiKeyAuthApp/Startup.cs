@@ -36,7 +36,7 @@ namespace ApiKeyAuthApp
                 Info = new OpenApiInfo()
                 {
                     Version = "1.0.0",
-                    Title = "API AuthN'd by Key",
+                    Title = "API AuthN'd by API Key",
                     Description = "This is the API authN'd by an API key."
                 }
             };

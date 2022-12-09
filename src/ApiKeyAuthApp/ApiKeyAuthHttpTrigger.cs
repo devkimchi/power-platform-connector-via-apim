@@ -15,18 +15,19 @@ using Microsoft.OpenApi.Models;
 
 namespace ApiKeyAuthApp
 {
-    public class ApiKeyHttpTrigger
+    public class ApiKeyAuthHttpTrigger
     {
-        private readonly ILogger<ApiKeyHttpTrigger> _logger;
+        private readonly ILogger<ApiKeyAuthHttpTrigger> _logger;
 
-        public ApiKeyHttpTrigger(ILogger<ApiKeyHttpTrigger> log)
+        public ApiKeyAuthHttpTrigger(ILogger<ApiKeyAuthHttpTrigger> log)
         {
-            this._logger = log;
+            this._logger = log.ThrowIfNullOrDefault();
         }
 
-        [FunctionName(nameof(ApiKeyHttpTrigger.GetProfile))]
+        [FunctionName(nameof(ApiKeyAuthHttpTrigger.GetProfile))]
         [OpenApiOperation(operationId: "Profile", tags: new[] { "profile" })]
-        // [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "x-functions-key", In = OpenApiSecurityLocationType.Header)]
+        // [OpenApiSecurity("api_key", SecuritySchemeType.ApiKey, Name = "x-functions-key", In = OpenApiSecurityLocationType.Header)]
+        [OpenApiSecurity("api_key", SecuritySchemeType.ApiKey, Name = "Ocp-Apim-Subscription-Key", In = OpenApiSecurityLocationType.Header)]
         [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The **Name** parameter")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(ProfileResponse), Description = "The OK response")]
         public async Task<IActionResult> GetProfile(
