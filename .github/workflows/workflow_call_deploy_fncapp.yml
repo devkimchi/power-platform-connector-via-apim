@@ -71,8 +71,8 @@ jobs:
 
         $appsettings = Invoke-RestMethod -Uri $uri
         $appsettings | ForEach-Object {
-            $appsettings_name = $_.name
-            $appsettings_value = $_.value
+            $appsettings_name = "$_.name"
+            $appsettings_value = "$_.value"
 
             $appsettings_updated = az functionapp config appsettings set -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_FNCAPP_NAME }} --settings $appsettings_name="$appsettings_value"
         }
