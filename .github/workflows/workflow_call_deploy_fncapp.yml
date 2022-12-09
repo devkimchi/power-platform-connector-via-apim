@@ -63,6 +63,29 @@ jobs:
           --type zip \
           --verbose
 
+    - name: Update app settings
+      shell: pwsh
+      run: |
+        $filename = "appsettings-${{ matrix.app.name }}.json"
+        $uri = "https://raw.githubusercontent.com/${{ github.repository }}/${{ inputs.github_branch_name }}/infra/$filename"
+
+        $appsettings = Invoke-RestMethod -Uri $uri
+        $appsettings | ForEach-Object {
+            $appsettings_name = $_.name
+            $appsettings_value = $_.value
+
+            appsettings_updated = az functionapp config appsettings set -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_FNCAPP_NAME }} --settings $appsettings_name="$appsettings_value"
+        }
+
+    - name: Update app settings on Basic Auth
+      if: matrix.app.name == 'basicauth'
+      shell: bash
+      run: |
+        appsettings_updated=$(az functionapp config appsettings set \
+          -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} \
+          -n ${{ env.AZURE_FNCAPP_NAME }} \
+          --settings Atlassian__InstanceName=${{ secrets.ATLASSIAN_INSTANCE_NAME }})
+
     - name: Update function key on APIM
       shell: bash
       run: |

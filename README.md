@@ -7,6 +7,10 @@ This provides sample codes how to protect Power Platform custom connectors throu
 
 TBD
 
+```bash
+ATLASSIAN_INSTANCE_NAME={{Atlassian_InstanceName}}
+```
+
 ```powershell
 az login
 gh auth login
