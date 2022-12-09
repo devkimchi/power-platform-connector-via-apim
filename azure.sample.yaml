@@ -16,3 +16,8 @@ services:
     host: function
     language: csharp
     resourceName: fncapp-{{AZURE_ENV_NAME}}-api-key-auth
+  basicauth:
+    project: './src/BasicAuthApp'
+    host: function
+    language: csharp
+    resourceName: fncapp-{{AZURE_ENV_NAME}}-basic-auth
