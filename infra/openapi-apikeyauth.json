@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "API AuthN'd by Key",
+    "title": "API AuthN'd by API Key",
     "description": "This is the API authN'd by an API key.",
     "version": "1.0.0"
   },
@@ -39,7 +39,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     }
   },
@@ -52,6 +57,13 @@
             "type": "string"
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "Ocp-Apim-Subscription-Key",
+        "in": "header"
       }
     }
   }

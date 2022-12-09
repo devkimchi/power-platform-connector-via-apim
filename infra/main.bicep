@@ -21,6 +21,14 @@ var apps = [
         apiExtension: 'json'
         apiSubscription: true
     }
+    {
+        suffix: 'basic-auth'
+        apiName: 'BASIC-AUTH'
+        apiPath: 'basicauth'
+        apiFormat: 'openapi+json-link'
+        apiExtension: 'json'
+        apiSubscription: false
+    }
 ]
 var storageContainerName = 'openapis'
 
