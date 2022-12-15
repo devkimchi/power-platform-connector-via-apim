@@ -84,7 +84,9 @@
       "type": "pickString",
       "description": "Choose which app to start",
       "options": [
-        "ApiKeyAuthApp"
+        "ApiKeyAuthApp",
+        "BasicAuthApp",
+        "AuthCodeAuthApp"
       ]
     }
   ]
