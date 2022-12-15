@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -6,6 +6,8 @@
 
     <AssemblyName>AuthCodeAuthApp</AssemblyName>
     <RootNamespace>AuthCodeAuthApp</RootNamespace>
+
+    <UserSecretsId>8f562715-4fd2-4db7-994c-2f481bf8de48</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

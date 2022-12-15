@@ -21,3 +21,8 @@ services:
     host: function
     language: csharp
     resourceName: fncapp-{{AZURE_ENV_NAME}}-basic-auth
+  authcodeauth:
+    project: './src/AuthCodeAuthApp'
+    host: function
+    language: csharp
+    resourceName: fncapp-ppapim-auth-code-auth
