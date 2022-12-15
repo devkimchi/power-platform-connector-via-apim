@@ -29,7 +29,7 @@ rm CascadiaCode.zip
 
 ## AZURE BICEP CLI ##
 # Uncomment the below to install Azure Bicep CLI.
-# az bicep install
+az bicep install
 
 ## AZURE FUNCTIONS CORE TOOLS ##
 # Uncomment the below to install Azure Functions Core Tools. Make sure you have installed node.js
