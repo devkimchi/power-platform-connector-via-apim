@@ -29,6 +29,14 @@ var apps = [
         apiExtension: 'json'
         apiSubscription: false
     }
+    {
+        suffix: 'auth-code-auth'
+        apiName: 'AUTH-CODE-AUTH'
+        apiPath: 'authcodeauth'
+        apiFormat: 'openapi+json-link'
+        apiExtension: 'json'
+        apiSubscription: false
+    }
 ]
 var storageContainerName = 'openapis'
 
