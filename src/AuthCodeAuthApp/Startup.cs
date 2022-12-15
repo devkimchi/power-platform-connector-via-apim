@@ -1,5 +1,7 @@
 using System;
 
+using AuthCodeAuthApp.Models;
+
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Configurations.AppSettings.Extensions;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Abstractions;
@@ -31,6 +33,11 @@ namespace AuthCodeAuthApp
 
         private static void ConfigureAppSettings(IServiceCollection services)
         {
+            var settings = services.BuildServiceProvider()
+                                   .GetService<IConfiguration>()
+                                   .Get<GraphSettings>(GraphSettings.Name);
+            services.AddSingleton(settings);
+
             var options = new DefaultOpenApiConfigurationOptions()
             {
                 OpenApiVersion = OpenApiVersionType.V3,
