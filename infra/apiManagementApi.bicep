@@ -102,12 +102,12 @@ resource apimapipolicy 'Microsoft.ApiManagement/service/apis/policies@2021-08-01
 }
 
 // resource apimproduct 'Microsoft.ApiManagement/service/products@2021-08-01' existing = {
-//   name: '${apim.name}/${apiManagement.product.name}'
-//   scope: resourceGroup(apiManagement.groupName)
+//     name: '${apim.name}/${apiManagement.product.name}'
+//     scope: resourceGroup(apiManagement.groupName)
 // }
 
 // resource apimproductapi 'Microsoft.ApiManagement/service/products/apis@2021-08-01' = {
-//   name: '${apimproduct.name}/${apiManagement.api.name}'
+//     name: '${apimproduct.name}/${apiManagement.api.name}'
 // }
 
 var operations = [
@@ -118,10 +118,22 @@ var operations = [
         urlTemplate: '/openapi/v2.json'
     }
     {
+        name: 'openapi-v2-yaml'
+        displayName: 'openapi/v2.yaml'
+        method: 'GET'
+        urlTemplate: '/openapi/v2.yaml'
+    }
+    {
         name: 'openapi-v3-json'
         displayName: 'openapi/v3.json'
         method: 'GET'
         urlTemplate: '/openapi/v3.json'
+    }
+    {
+        name: 'openapi-v3-yaml'
+        displayName: 'openapi/v3.yaml'
+        method: 'GET'
+        urlTemplate: '/openapi/v3.yaml'
     }
     {
         name: 'swagger-json'
@@ -130,10 +142,22 @@ var operations = [
         urlTemplate: '/swagger.json'
     }
     {
+        name: 'swagger-yaml'
+        displayName: 'swagger.yaml'
+        method: 'GET'
+        urlTemplate: '/swagger.yaml'
+    }
+    {
         name: 'swagger-ui'
         displayName: 'swagger/ui'
         method: 'GET'
         urlTemplate: '/swagger/ui'
+    }
+    {
+        name: 'oauth2-redirect-html'
+        displayName: 'oauth2-redirect.html'
+        method: 'GET'
+        urlTemplate: '/oauth2-redirect.html'
     }
 ]
 

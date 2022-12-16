@@ -19,7 +19,7 @@ var apps = [
         apiPath: 'apikeyauth'
         apiFormat: 'openapi+json-link'
         apiExtension: 'json'
-        apiSubscription: true
+        apiSubscription: false
     }
     {
         suffix: 'basic-auth'
