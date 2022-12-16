@@ -11,6 +11,11 @@ pipeline:
   provider: "github"
 
 services:
+  webapp:
+    project: './src/WebApp'
+    host: staticwebapp
+    language: csharp
+    resourceName: sttapp-{{AZURE_ENV_NAME}}
   apikeyauth:
     project: './src/ApiKeyAuthApp'
     host: function

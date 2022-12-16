@@ -1,0 +1,7 @@
+@page "/"
+@inject HttpClient Http
+@inject AppSettings Settings
+
+<ApiKeyAuthComponent Http="@Http" Settings="@Settings" />
+<BasicAuthComponent Http="@Http" Settings="@Settings" />
+<AuthCodeAuthComponent Http="@Http" Settings="@Settings" />
