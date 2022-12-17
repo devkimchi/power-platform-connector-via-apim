@@ -1,5 +1,11 @@
 [
   {
+    "name": "webapp",
+    "suffix": "",
+    "path": "WebApp",
+    "nv": ""
+  },
+  {
     "name": "apikeyauth",
     "suffix": "api-key-auth",
     "path": "ApiKeyAuthApp",

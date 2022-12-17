@@ -20,6 +20,15 @@ var apps = [
         apiFormat: 'openapi+json-link'
         apiExtension: 'json'
         apiSubscription: false
+        apiOperations: [
+            {
+                name: 'Profile'
+                policy: {
+                    format: 'xml-link'
+                    value: 'https://raw.githubusercontent.com/${gitHubUsername}/${gitHubRepositoryName}/${gitHubBranchName}/infra/apim-api-apikeyauth-operation-policy-profile.xml'
+                }
+            }
+        ]
     }
     {
         suffix: 'basic-auth'
@@ -28,6 +37,7 @@ var apps = [
         apiFormat: 'openapi+json-link'
         apiExtension: 'json'
         apiSubscription: false
+        apiOperations: []
     }
     {
         suffix: 'auth-code-auth'
@@ -36,6 +46,7 @@ var apps = [
         apiFormat: 'openapi+json-link'
         apiExtension: 'json'
         apiSubscription: false
+        apiOperations: []
     }
 ]
 var storageContainerName = 'openapis'
@@ -43,6 +54,15 @@ var storageContainerName = 'openapis'
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
     name: 'rg-${name}'
     location: location
+}
+
+module sttapp './staticWebApp.bicep' = {
+    name: 'StaticWebApp'
+    scope: rg
+    params: {
+        name: name
+        location: 'eastasia'
+    }
 }
 
 module apim './provision-apiManagement.bicep' = {
@@ -58,6 +78,7 @@ module apim './provision-apiManagement.bicep' = {
         apiManagementPublisherEmail: apiManagementPublisherEmail
         apiManagementPolicyFormat: 'xml-link'
         apiManagementPolicyValue: 'https://raw.githubusercontent.com/${gitHubUsername}/${gitHubRepositoryName}/${gitHubBranchName}/infra/apim-global-policy.xml'
+        staticWebAppHostname: sttapp.outputs.hostname
     }
 }
 
@@ -99,6 +120,7 @@ module apis './provision-apiManagementApi.bicep' = [for (app, index) in apps: {
         apiManagementApiValue: 'https://raw.githubusercontent.com/${gitHubUsername}/${gitHubRepositoryName}/${gitHubBranchName}/infra/openapi-${replace(toLower(app.apiName), '-', '')}.${app.apiExtension}'
         apiManagementApiPolicyFormat: 'xml-link'
         apiManagementApiPolicyValue: 'https://raw.githubusercontent.com/${gitHubUsername}/${gitHubRepositoryName}/${gitHubBranchName}/infra/apim-api-policy-${replace(toLower(app.apiName), '-', '')}.xml'
+        apiManagementApiOperations: app.apiOperations
     }
 }]
 
