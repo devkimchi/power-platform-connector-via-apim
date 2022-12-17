@@ -33,7 +33,7 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.x
+        dotnet-version: 7.x
 
     - name: Restore NuGet packages
       shell: bash
@@ -50,13 +50,29 @@ jobs:
       run: |
         dotnet test . -c Release
 
-    - name: Create artifacts
+    - name: Create artifacts - WebApp
+      if: inputs.is_pullrequest == 'false' && matrix.app.name == 'webapp'
+      shell: bash
+      run: |
+        mv src/WebApp/wwwroot/appsettings.sample.json src/WebApp/wwwroot/appsettings.json
+        dotnet publish -c Release
+
+    - name: Create artifacts - FunctionApp
+      if: inputs.is_pullrequest == 'false' && matrix.app.name != 'webapp'
       shell: bash
       run: |
         dotnet publish -c Release
 
-    - name: Add app paths to env
-      if: inputs.is_pullrequest == 'false'
+    - name: Add app paths to env - WebApp
+      if: inputs.is_pullrequest == 'false' && matrix.app.name == 'webapp'
+      shell: pwsh
+      run: |
+        $appPath = "src/${{ matrix.app.path }}/bin/Release/net7.0/publish"
+
+        echo "APP_PATH=$appPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+
+    - name: Add app paths to env - FunctionApp
+      if: inputs.is_pullrequest == 'false' && matrix.app.name != 'webapp'
       shell: pwsh
       run: |
         $appPath = "src/${{ matrix.app.path }}/bin/Release/net6.0/publish"

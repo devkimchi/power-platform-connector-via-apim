@@ -75,6 +75,18 @@ jobs:
       artifact_name: 'app'
       github_branch_name: 'main'
 
+  call_deploy_sttapp_from_dispatch:
+    if: github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/workflow_call_deploy_sttapp.yml
+    needs:
+    - call_set_matrix
+    - call_build_test_upload_from_dispatch
+    secrets: inherit
+    with:
+      matrix_json: ${{ needs.call_set_matrix.outputs.matrix_json }}
+      artifact_name: 'app'
+      github_branch_name: 'main'
+
   # GitHub Push #
   call_build_test_upload_from_push:
     if: github.event_name == 'push'
@@ -96,7 +108,17 @@ jobs:
     with:
       matrix_json: ${{ needs.call_set_matrix.outputs.matrix_json }}
       artifact_name: 'app'
-      github_branch_name: 'main'
+
+  call_deploy_sttapp_from_push:
+    if: github.event_name == 'push'
+    uses: ./.github/workflows/workflow_call_deploy_sttapp.yml
+    needs:
+    - call_set_matrix
+    - call_build_test_upload_from_push
+    secrets: inherit
+    with:
+      matrix_json: ${{ needs.call_set_matrix.outputs.matrix_json }}
+      artifact_name: 'app'
 
   # GitHub Pull Request #
   call_build_test:
