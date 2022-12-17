@@ -1,28 +1,26 @@
-@using System.Text.Json;
-
 <h2>API Key Auth</h2>
 
 <div class="row">
-    <div class="input-group">
-        <label for="apiKey" class="col-sm-2 col-form-label">Ocp-Apim-Subscription-Key</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control-plaintext" id="apiKey" @bind="@apiKey" @oninput="OnApiKeyInput" placeholder="APIM subscription key here">
-        </div>
+  <div class="input-group">
+    <label for="apiKey" class="col-sm-2 col-form-label">Ocp-Apim-Subscription-Key</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control-plaintext" id="apiKey" @bind="@apiKey" @oninput="OnApiKeyEntered" placeholder="APIM subscription key here">
     </div>
-    <div class="input-group">
-        <label for="name" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control-plaintext" id="name" @bind="@name" @oninput="OnNameInput" placeholder="Your name here">
-        </div>
+  </div>
+  <div class="input-group">
+    <label for="name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control-plaintext" id="name" @bind="@name" @oninput="OnNameEntered" placeholder="Your name here">
     </div>
-    <div class="input-group">
-        <button class="btn btn-primary" @onclick="OnApiKeyAuthSubmit">Submit</button>
-        <input type="text" class="form-control" readonly value="@endpoint">
-    </div>
-    <div class="input-group" style="height: 300px;">
-        <span class="input-group-text">Result</span>
-        <textarea readonly class="form-control mh-100 @backgroundColor" aria-label="Result">@result</textarea>
-    </div>
+  </div>
+  <div class="input-group">
+    <button class="btn btn-primary" @onclick="OnApiKeyAuthSubmitted">Submit</button>
+    <input type="text" class="form-control" readonly value="@endpoint">
+  </div>
+  <div class="input-group" style="height: 300px;">
+    <span class="input-group-text">Result</span>
+    <textarea readonly class="form-control mh-100 @backgroundColor" aria-label="Result">@result</textarea>
+  </div>
 </div>
 
 @code {
@@ -38,17 +36,17 @@
     [Parameter]
     public AppSettings? Settings { get; set; } = default;
 
-    protected void OnApiKeyInput(ChangeEventArgs ev)
+    protected void OnApiKeyEntered(ChangeEventArgs ev)
     {
         this.apiKey = ev.Value as string;
     }
 
-    protected void OnNameInput(ChangeEventArgs ev)
+    protected void OnNameEntered(ChangeEventArgs ev)
     {
         this.name = ev.Value as string;
     }
 
-    protected async Task OnApiKeyAuthSubmit()
+    protected async Task OnApiKeyAuthSubmitted()
     {
         if (this.Http is null)
         {

@@ -1,9 +1,115 @@
+@using Microsoft.Identity.Client;
+
 <h2>Authorization Code Auth</h2>
 
+<div class="row">
+  <div class="input-group">
+    <label for="clientId" class="col-sm-2 col-form-label">Client ID</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control-plaintext" id="clientId" @bind="@clientId" @oninput="OnClientIdEntered" placeholder="Client ID here">
+    </div>
+  </div>
+  <div class="input-group">
+    <label for="clientSecret" class="col-sm-2 col-form-label">Client Secret</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control-plaintext" id="clientSecret" @bind="@clientSecret" @oninput="OnClientSecretEntered" placeholder="Client Secret here">
+    </div>
+  </div>
+  <div class="input-group">
+    <label for="tenantId" class="col-sm-2 col-form-label">Tenant ID</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control-plaintext" id="tenantId" @bind="@tenantId" @oninput="OnTenantIdEntered" placeholder="Tenant ID here">
+    </div>
+  </div>
+  <div class="input-group">
+    <button class="btn btn-primary" @onclick="OnAuthCodeAuthSubmitted">Submit</button>
+    <input type="text" class="form-control" readonly value="@endpoint">
+  </div>
+  <div class="input-group" style="height: 300px;">
+    <span class="input-group-text">Result</span>
+    <textarea readonly class="form-control mh-100 @backgroundColor" aria-label="Result">@result</textarea>
+  </div>
+</div>
+
 @code {
+    private string? clientId = default;
+    private string? clientSecret = default;
+    private string? tenantId = default;
+    private string? backgroundColor = "text-black bg-light";
+    private string? endpoint = default;
+    private string? result = default;
+
     [Parameter]
     public HttpClient? Http { get; set; } = default;
 
     [Parameter]
     public AppSettings? Settings { get; set; } = default;
+
+    protected void OnClientIdEntered(ChangeEventArgs ev)
+    {
+        this.clientId = ev.Value as string;
+    }
+
+    protected void OnClientSecretEntered(ChangeEventArgs ev)
+    {
+        this.clientSecret = ev.Value as string;
+    }
+
+    protected void OnTenantIdEntered(ChangeEventArgs ev)
+    {
+        this.tenantId = ev.Value as string;
+    }
+
+    protected async Task OnAuthCodeAuthSubmitted()
+    {
+        if (this.Http is null)
+        {
+            result = "Http is null";
+            backgroundColor = "text-white bg-danger";
+            return;
+        }
+
+        if (this.Settings is null)
+        {
+            result = "Settings is null";
+            backgroundColor = "text-white bg-danger";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(this.clientId))
+        {
+            result = "Please enter the client ID";
+            backgroundColor = "text-white bg-danger";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(this.clientSecret))
+        {
+            result = "Please enter the client secret";
+            backgroundColor = "text-white bg-danger";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(this.tenantId))
+        {
+            result = "Please enter the tenant ID";
+            backgroundColor = "text-white bg-danger";
+            return;
+        }
+
+        var payload = new
+        {
+            clientId = this.clientId,
+            clientSecret = this.clientSecret,
+            tenantId = this.tenantId,
+            endpoint = this.Settings.AuthCodeAuth.Endpoint
+        };
+
+        endpoint = this.Settings.AuthCodeAuth.Endpoint.TrimEnd('/');
+
+        this.Http.DefaultRequestHeaders.Clear();
+        var response = await this.Http.GetFromJsonAsync<object>(endpoint);
+        result = JsonSerializer.Serialize(response, new JsonSerializerOptions { WriteIndented = true });
+        backgroundColor = "text-white bg-success";
+    }
 }

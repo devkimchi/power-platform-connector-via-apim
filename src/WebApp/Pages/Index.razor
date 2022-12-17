@@ -2,6 +2,15 @@
 @inject HttpClient Http
 @inject AppSettings Settings
 
-<ApiKeyAuthComponent Http="@Http" Settings="@Settings" />
-<BasicAuthComponent Http="@Http" Settings="@Settings" />
-<AuthCodeAuthComponent Http="@Http" Settings="@Settings" />
+<div class="row mb-4">
+  <ApiKeyAuthComponent Http="@Http" Settings="@Settings" />
+</div>
+
+<div class="row mb-4">
+  <BasicAuthComponent Http="@Http" Settings="@Settings" />
+</div>
+@*
+<div class="row mb-4">
+  <AuthCodeAuthComponent Http="@Http" Settings="@Settings" />
+</div>
+*@

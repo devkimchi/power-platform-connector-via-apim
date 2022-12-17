@@ -13,9 +13,12 @@
     <cors allow-credentials="true">
       <allowed-origins>
         <origin>https://{{RESOURCE_NAME}}.azure-api.net</origin>
+        <origin>https://{{STTAPP_HOST}}</origin>
         <origin>https://flow.microsoft.com</origin>
         <origin>https://make.powerapps.com</origin>
         <origin>https://make.powerautomate.com</origin>
+        <origin>https://localhost:5001</origin>
+        <origin>http://localhost:5000</origin>
       </allowed-origins>
       <allowed-methods>
         <method>*</method>
