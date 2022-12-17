@@ -52,9 +52,18 @@ jobs:
 
     - name: Create artifacts - WebApp
       if: inputs.is_pullrequest == 'false' && matrix.app.name == 'webapp'
-      shell: bash
+      shell: pwsh
       run: |
-        mv src/WebApp/wwwroot/appsettings.sample.json src/WebApp/wwwroot/appsettings.json
+        pushd src/WebApp/wwwroot
+
+        Rename-Item -Path ./appsettings.sample.json -NewName appsettings.json
+
+        $(Get-Content -Path ./appsettings.json -Raw) -replace "{{AZURE_ENV_NAME}}", "${{ secrets.AZURE_ENV_NAME }}" | `
+                  ConvertFrom-Json | ConvertTo-Json -Depth 10 | `
+                  Out-File -Path ./appsettings.json -Force
+
+        popd
+
         dotnet publish -c Release
 
     - name: Create artifacts - FunctionApp
