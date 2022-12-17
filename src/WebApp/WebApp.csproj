@@ -8,11 +8,13 @@
     <AssemblyName>WebApp</AssemblyName>
     <RootNamespace>WebApp</RootNamespace>
 
+    <UserSecretsId>aab50063-c90b-4307-8337-05b8d40ed371</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

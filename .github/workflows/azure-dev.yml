@@ -37,7 +37,7 @@ jobs:
   call_set_matrix:
     uses: ./.github/workflows/workflow_call_set_matrix.yml
     with:
-      matrix_path: './infra/matrix.json'
+      matrix_path: './infra/gha-matrix.json'
 
   # GitHub Workflow Dispatch #
   # call_set_secrets:

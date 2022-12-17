@@ -7,7 +7,7 @@ on:
         type: string
         required: false
         description: File path that contains the matrix JSON array.
-        default: './infra/matrix.json'
+        default: './infra/gha-matrix.json'
     outputs:
       matrix_json:
         description: function app names in the format of JSON string array
