@@ -58,6 +58,7 @@ jobs:
   #   needs:
   #   - call_set_matrix
   #   # - call_set_secrets
+  #   secrets: inherit
   #   with:
   #     matrix_json: ${{ needs.call_set_matrix.outputs.matrix_json }}
   #     artifact_name: 'app'
@@ -92,6 +93,7 @@ jobs:
   #   uses: ./.github/workflows/workflow_call_build_test_upload.yml
   #   needs:
   #   - call_set_matrix
+  #   secrets: inherit
   #   with:
   #     matrix_json: ${{ needs.call_set_matrix.outputs.matrix_json }}
   #     artifact_name: 'app'
@@ -126,6 +128,7 @@ jobs:
     uses: ./.github/workflows/workflow_call_build_test_upload.yml
     needs:
     - call_set_matrix
+    secrets: inherit
     with:
       matrix_json: ${{ needs.call_set_matrix.outputs.matrix_json }}
       artifact_name: 'app'
