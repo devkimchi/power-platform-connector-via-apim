@@ -17,6 +17,7 @@
     </div>
     <div class="input-group">
         <button class="btn btn-primary" @onclick="OnApiKeyAuthSubmit">Submit</button>
+        <input type="text" class="form-control" readonly value="@endpoint">
     </div>
     <div class="input-group" style="height: 300px;">
         <span class="input-group-text">Result</span>
@@ -28,6 +29,7 @@
     private string? apiKey = default;
     private string? name = default;
     private string? backgroundColor = "text-black bg-light";
+    private string? endpoint = default;
     private string? result = default;
 
     [Parameter]
@@ -80,6 +82,8 @@
         this.Http.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
 
         var url = $"{this.Settings.ApiKeyAuth.Endpoint.TrimEnd('/')}?name={name}";
+        endpoint = url;
+
         var response = await this.Http.GetFromJsonAsync<object>(url);
         result = JsonSerializer.Serialize(response, new JsonSerializerOptions { WriteIndented = true });
         backgroundColor = "text-white bg-success";
