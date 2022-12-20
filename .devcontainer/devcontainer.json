@@ -25,7 +25,8 @@
     // Uncomment the below to install Azure CLI
     "ghcr.io/devcontainers/features/azure-cli:1": {
       "version": "latest",
-      "extensions": "account,alias,deploy-to-azure,functionapp,subscription,webapp"
+      "extensions": "account,alias,deploy-to-azure,functionapp,subscription,webapp",
+      "installBicep": true
     },
 
     // Uncomment the below to install GitHub CLI
@@ -41,7 +42,7 @@
     },
 
     // Install common utilities
-    "ghcr.io/devcontainers/features/common-utils:1": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
       "installOhMyZsh": true,
       "upgradePackages": true,
