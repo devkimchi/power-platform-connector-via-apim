@@ -1,6 +1,6 @@
 # [Choice] .NET version: 7.0, 7.0-bullseye-slim, 7.0-jammy, 6.0, 6.0-bullseye-slim, 6.0-jammy, 6.0-focal
 ARG VARIANT="6.0-jammy"
-FROM mcr.microsoft.com/dotnet/sdk:${VARIANT}
+FROM mcr.microsoft.com/devcontainers/dotnet:${VARIANT}
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
