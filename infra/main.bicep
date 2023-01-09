@@ -48,6 +48,15 @@ var apps = [
         apiSubscription: false
         apiOperations: []
     }
+    {
+        suffix: 'implicit-auth'
+        apiName: 'IMPLICIT-AUTH'
+        apiPath: 'implicitauth'
+        apiFormat: 'openapi+json-link'
+        apiExtension: 'json'
+        apiSubscription: false
+        apiOperations: []
+    }
 ]
 var storageContainerName = 'openapis'
 

@@ -22,5 +22,11 @@
     "suffix": "auth-code-auth",
     "path": "AuthCodeAuthApp",
     "nv": "AUTH_CODE_AUTH"
+  },
+  {
+    "name": "implicitauth",
+    "suffix": "implicit-auth",
+    "path": "ImplicitAuthApp",
+    "nv": "IMPLICIT_AUTH"
   }
 ]

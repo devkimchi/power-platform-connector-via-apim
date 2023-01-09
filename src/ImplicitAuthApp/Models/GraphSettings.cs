@@ -1,4 +1,4 @@
-namespace AuthCodeAuthApp.Models
+namespace ImplicitAuthApp.Models
 {
     public class GraphSettings
     {
