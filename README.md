@@ -5,6 +5,15 @@ This provides sample codes how to protect Power Platform custom connectors throu
 
 ## Getting Started ##
 
+Read the following documents:
+
+* [**API Key Auth**](./src/ApiKeyAuthApp/README.md)
+* [**Basic Auth**](./src/BasicAuthApp/README.md)
+* [**OAuth2 &ndash; Authorisation Code Auth**](./src/AuthCodeAuthApp/README.md)
+* [**OAuth2 &ndash; Implicit Auth**](./src/ImplicitAuthApp/README.md)
+* [**OpenID Connect Auth**](./src/OidcAuthApp/README.md)
+
+
 TBD
 
 ```bash
