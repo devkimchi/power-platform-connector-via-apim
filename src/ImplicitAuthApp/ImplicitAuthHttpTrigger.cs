@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+using ImplicitAuthApp.Flows;
 using ImplicitAuthApp.Models;
 
 using Microsoft.AspNetCore.Http;
@@ -18,22 +19,23 @@ using Newtonsoft.Json;
 
 namespace ImplicitAuthApp
 {
-    public class BearerTokenHttpTrigger
+    public class ImplicitAuthHttpTrigger
     {
         private readonly GraphSettings _settings;
         private readonly HttpClient _http;
-        private readonly ILogger<BearerTokenHttpTrigger> _logger;
+        private readonly ILogger<ImplicitAuthHttpTrigger> _logger;
 
-        public BearerTokenHttpTrigger(GraphSettings settings, IHttpClientFactory factory, ILogger<BearerTokenHttpTrigger> log)
+        public ImplicitAuthHttpTrigger(GraphSettings settings, IHttpClientFactory factory, ILogger<ImplicitAuthHttpTrigger> log)
         {
             this._settings = settings.ThrowIfNullOrDefault();
             this._http = factory.ThrowIfNullOrDefault().CreateClient("profile");
             this._logger = log.ThrowIfNullOrDefault();
         }
 
-        [FunctionName(nameof(BearerTokenHttpTrigger.GetProfile))]
+        [FunctionName(nameof(ImplicitAuthHttpTrigger.GetProfile))]
         [OpenApiOperation(operationId: "Profile", tags: new[] { "profile" })]
-        [OpenApiSecurity("bearer_auth", SecuritySchemeType.Http, Scheme = OpenApiSecuritySchemeType.Bearer, BearerFormat = "JWT")]
+        //[OpenApiSecurity("bearer_auth", SecuritySchemeType.Http, Scheme = OpenApiSecuritySchemeType.Bearer, BearerFormat = "JWT")]
+        [OpenApiSecurity("implicit_auth", SecuritySchemeType.OAuth2, Flows = typeof(ImplicitAuthFlow))]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(GraphUser), Description = "The OK response")]
         public async Task<IActionResult> GetProfile(
             [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "profile")] HttpRequest req)

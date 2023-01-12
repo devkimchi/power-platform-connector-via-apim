@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
+using OpenApiSettings = Microsoft.Azure.WebJobs.Extensions.OpenApi.Configurations.OpenApiSettings;
+
 [assembly: FunctionsStartup(typeof(ImplicitAuthApp.Startup))]
 
 namespace ImplicitAuthApp
@@ -38,9 +40,13 @@ namespace ImplicitAuthApp
                                    .Get<GraphSettings>(GraphSettings.Name);
             services.AddSingleton(settings);
 
+            var openapi = services.BuildServiceProvider()
+                                  .GetService<IConfiguration>()
+                                  .Get<OpenApiSettings>(OpenApiSettings.Name);
+
             var options = new DefaultOpenApiConfigurationOptions()
             {
-                OpenApiVersion = OpenApiVersionType.V3,
+                OpenApiVersion = openapi.Version,
                 Info = new OpenApiInfo()
                 {
                     Version = "1.0.0",

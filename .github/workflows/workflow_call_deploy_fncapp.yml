@@ -107,6 +107,15 @@ jobs:
           -n ${{ env.AZURE_FNCAPP_NAME }} \
           --settings Atlassian__InstanceName=${{ secrets.ATLASSIAN_INSTANCE_NAME }})
 
+    - name: Update app settings on Implicit Auth
+      if: matrix.app.name == 'implicitauth'
+      shell: bash
+      run: |
+        appsettings_updated=$(az functionapp config appsettings set \
+          -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} \
+          -n ${{ env.AZURE_FNCAPP_NAME }} \
+          --settings OpenApi__Auth__TenantId=${{ secrets.AZURE_TENANT_ID }})
+
     - name: Update function key on APIM
       if: matrix.app.name != 'webapp'
       shell: bash

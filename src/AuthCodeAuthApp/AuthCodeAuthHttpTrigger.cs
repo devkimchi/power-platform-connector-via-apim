@@ -18,20 +18,20 @@ using Newtonsoft.Json;
 
 namespace AuthCodeAuthApp
 {
-    public class BearerTokenHttpTrigger
+    public class AuthCodeAuthHttpTrigger
     {
         private readonly GraphSettings _settings;
         private readonly HttpClient _http;
-        private readonly ILogger<BearerTokenHttpTrigger> _logger;
+        private readonly ILogger<AuthCodeAuthHttpTrigger> _logger;
 
-        public BearerTokenHttpTrigger(GraphSettings settings, IHttpClientFactory factory, ILogger<BearerTokenHttpTrigger> log)
+        public AuthCodeAuthHttpTrigger(GraphSettings settings, IHttpClientFactory factory, ILogger<AuthCodeAuthHttpTrigger> log)
         {
             this._settings = settings.ThrowIfNullOrDefault();
             this._http = factory.ThrowIfNullOrDefault().CreateClient("profile");
             this._logger = log.ThrowIfNullOrDefault();
         }
 
-        [FunctionName(nameof(BearerTokenHttpTrigger.GetProfile))]
+        [FunctionName(nameof(AuthCodeAuthHttpTrigger.GetProfile))]
         [OpenApiOperation(operationId: "Profile", tags: new[] { "profile" })]
         [OpenApiSecurity("bearer_auth", SecuritySchemeType.Http, Scheme = OpenApiSecuritySchemeType.Bearer, BearerFormat = "JWT")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(GraphUser), Description = "The OK response")]
