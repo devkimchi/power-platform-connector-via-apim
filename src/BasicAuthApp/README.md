@@ -3,7 +3,9 @@
 ## Assumptions ##
 
 * Make sure all the apps have been deployed to Azure and integrated with Azure APIM. Detailed deployment instructions can be found at [this document](../../README.md).
-* You have an account on [Atlassian Jira](https://www.atlassian.com/software/jira). If you don't have one, create it. Then, get the API token from your [account settings](https://id.atlassian.com/manage-profile/security/api-tokens).
+* You have an account on [Atlassian Jira](https://www.atlassian.com/software/jira).
+  * If you don't have one, create it. Then, get the API token from your [account settings](https://id.atlassian.com/manage-profile/security/api-tokens).
+  * Your Atlassian instance name has been stored as GitHub secret, in the name of `ATLASSIAN_INSTANCE_NAME`.
 
 
 ## Getting Started ##

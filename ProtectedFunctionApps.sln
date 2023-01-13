@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicAuthApp", "src\BasicAu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthCodeAuthApp", "src\AuthCodeAuthApp\AuthCodeAuthApp.csproj", "{E6FF07A0-7E6F-4AED-AA71-3FB1ED624CC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImplicitAuthApp", "src\ImplicitAuthApp\ImplicitAuthApp.csproj", "{044497D1-8377-4F53-9631-7487D94B8BE1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +35,6 @@ Global
 		{E6FF07A0-7E6F-4AED-AA71-3FB1ED624CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6FF07A0-7E6F-4AED-AA71-3FB1ED624CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6FF07A0-7E6F-4AED-AA71-3FB1ED624CC3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{044497D1-8377-4F53-9631-7487D94B8BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{044497D1-8377-4F53-9631-7487D94B8BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{044497D1-8377-4F53-9631-7487D94B8BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{044497D1-8377-4F53-9631-7487D94B8BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,7 +44,6 @@ Global
 		{C32CDDB6-1EE8-40F3-AE55-23CBBED849BF} = {86F0D247-5DD1-4773-9D42-0FCEF4DD5121}
 		{5C7ADB09-1E33-4794-A513-C73BFF991180} = {86F0D247-5DD1-4773-9D42-0FCEF4DD5121}
 		{E6FF07A0-7E6F-4AED-AA71-3FB1ED624CC3} = {86F0D247-5DD1-4773-9D42-0FCEF4DD5121}
-		{044497D1-8377-4F53-9631-7487D94B8BE1} = {86F0D247-5DD1-4773-9D42-0FCEF4DD5121}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A61E6DF-2FBA-495C-95EE-B6EB2403825F}
