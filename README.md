@@ -3,6 +3,12 @@
 This provides sample codes how to protect Power Platform custom connectors through Azure API Management as the "transparent" proxy.
 
 
+## Further Reading ##
+
+* 한국어: TBD
+* English: TBD
+
+
 ## Getting Started ##
 
 There are two parts involved in this repository to implement the Power Platform custom connectors protected by Azure API Management.
@@ -56,8 +62,16 @@ There are two parts involved in this repository to implement the Power Platform 
    azd pipeline config
    ```
 
-6. Overwrite `azure.yaml` with `azure.sample.yaml`.
-7. Run the following command to provision and deploy the apps.
+6. Overwrite `azure.yaml` with `azure.sample.yaml`. Then replace all `{{AZURE_ENV_NAME}}` with your actual environment name.
+7. Open `.azure/{{AZURE_ENV_NAME}}/.env` and add the following three lines. Make sure you replace `{{GITHUB_PERSONAL_ACCESS_TOKEN}}` and `{{GITHUB_USERNAME}}` with yours, respectively:
+
+   ```bash
+   GITHUB_REPOSITORY_NAME="power-platform-connector-via-apim"
+   GITHUB_TOKEN="{{GITHUB_PERSONAL_ACCESS_TOKEN}}"
+   GITHUB_USERNAME="{{GITHUB_USERNAME}}"
+   ```
+
+8. Run the following command to provision and deploy the apps.
 
    ```bash
    azd provision
@@ -71,3 +85,9 @@ Each custom connector has its own way of authentication and authorisation. Read 
 * [**API Key Auth**](./src/ApiKeyAuthApp/README.md)
 * [**Basic Auth**](./src/BasicAuthApp/README.md)
 * [**OAuth2 &ndash; Authorisation Code Auth**](./src/AuthCodeAuthApp/README.md)
+
+
+## Issues? ##
+
+If you find any issue while using this repository, please create an issue on the [issue](../../issues) page.
+

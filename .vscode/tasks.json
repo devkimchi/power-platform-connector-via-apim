@@ -86,8 +86,7 @@
       "options": [
         "ApiKeyAuthApp",
         "BasicAuthApp",
-        "AuthCodeAuthApp",
-        "ImplicitAuthApp"
+        "AuthCodeAuthApp"
       ]
     }
   ]
