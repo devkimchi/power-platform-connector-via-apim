@@ -13,8 +13,8 @@ This provides sample codes how to protect Power Platform custom connectors throu
 
 There are two parts involved in this repository to implement the Power Platform custom connectors protected by Azure API Management.
 
-* Provision and deploy apps
-* Create custom connectors on Power Platform
+1. [Provision and deploy apps](#provision-and-deploy-apps)
+2. [Create custom connectors on Power Platform](#custom-connecotrs-on-power-platform)
 
 
 ### Provision and Deploy Apps ###
