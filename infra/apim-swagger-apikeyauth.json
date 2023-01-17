@@ -31,12 +31,12 @@
     }
   ],
   "paths": {
-    "/profile": {
+    "/greeting": {
       "get": {
-        "operationId": "Profile",
-        "summary": "Profile",
+        "operationId": "Greeting",
+        "summary": "Greeting",
         "tags": [
-          "profile"
+          "greeting"
         ],
         "parameters": [
           {
@@ -54,7 +54,7 @@
           "200": {
             "description": "The OK response",
             "schema": {
-              "$ref": "#/definitions/profileResponse"
+              "$ref": "#/definitions/greetingResponse"
             },
             "examples": {
               "application/json": {
@@ -67,7 +67,7 @@
     }
   },
   "definitions": {
-    "profileResponse": {
+    "greetingResponse": {
       "type": "object",
       "properties": {
         "message": {

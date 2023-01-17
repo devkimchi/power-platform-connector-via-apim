@@ -1,6 +1,6 @@
 namespace ApiKeyAuthApp.Models
 {
-    public class ProfileResponse
+    public class GreetingResponse
     {
         public virtual string Message { get; set; } = string.Empty;
     }

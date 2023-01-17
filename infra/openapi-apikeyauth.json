@@ -11,12 +11,12 @@
     }
   ],
   "paths": {
-    "/profile": {
+    "/greeting": {
       "get": {
         "tags": [
-          "profile"
+          "greeting"
         ],
-        "operationId": "Profile",
+        "operationId": "Greeting",
         "parameters": [
           {
             "name": "name",
@@ -34,7 +34,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/profileResponse"
+                  "$ref": "#/components/schemas/greetingResponse"
                 }
               }
             }
@@ -50,7 +50,7 @@
   },
   "components": {
     "schemas": {
-      "profileResponse": {
+      "greetingResponse": {
         "type": "object",
         "properties": {
           "message": {

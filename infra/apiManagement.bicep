@@ -42,7 +42,11 @@ var apiManagement = {
 
 var dicts = [
     {
-        name: 'RESOURCE_NAME'
+        name: 'AZURE_ENV_NAME'
+        value: name
+    }
+    {
+        name: 'APIM_NAME'
         value: apiManagement.name
     }
     {
