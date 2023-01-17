@@ -27,7 +27,7 @@
    * Parameter name: `Ocp-Apim-Subscription-Key`
    * Parameter location: `Header`
 
-6. Remove all operations except `Profile`.
+6. Remove all operations except `Greeting`.
 7. Create the connector.
 8. Create a new connection by entering the APIM subscription key.
 9. Test the connector directly on the connector, a Power Apps app or a Power Automate workflow.

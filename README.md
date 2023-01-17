@@ -78,13 +78,14 @@ There are two parts involved in this repository to implement the Power Platform 
    ```
 
 
-### Custom Connecotrs on Power Platform ###
+### Custom Connectors on Power Platform ###
 
 Power Platform custom connector currently supports three authentication/authorisation methods &ndash; API Key Auth, Basic Auth and OAuth2 Authorisation Code Auth. To apply each method, read the following documents:
 
 * [**API Key Auth**](./src/ApiKeyAuthApp/README.md)
 * [**Basic Auth**](./src/BasicAuthApp/README.md)
 * [**OAuth2 &ndash; Authorisation Code Auth**](./src/AuthCodeAuthApp/README.md)
+* [**BFF &ndash; Combination of API Key Auth & Basic Auth**](./src/BffApp/README.md)
 
 
 ## Issues? ##

@@ -31,7 +31,7 @@ namespace ApiKeyAuthApp
         [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The **Name** parameter")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(GreetingResponse), Description = "The OK response")]
         public async Task<IActionResult> GetGreeting(
-            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "profile")] HttpRequest req)
+            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "greeting")] HttpRequest req)
         {
             this._logger.LogInformation("C# HTTP trigger function processed a request.");
 

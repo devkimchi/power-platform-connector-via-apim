@@ -53,7 +53,7 @@ namespace ApiKeyAuthApp
 
         private static void ConfigureHttpClient(IServiceCollection services)
         {
-            services.AddHttpClient("profile");
+            services.AddHttpClient("greeting");
         }
     }
 }

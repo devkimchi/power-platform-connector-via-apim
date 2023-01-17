@@ -22,10 +22,10 @@ var apps = [
         apiSubscription: false
         apiOperations: [
             {
-                name: 'Profile'
+                name: 'Greeting'
                 policy: {
                     format: 'xml-link'
-                    value: 'https://raw.githubusercontent.com/${gitHubUsername}/${gitHubRepositoryName}/${gitHubBranchName}/infra/apim-api-apikeyauth-operation-policy-profile.xml'
+                    value: 'https://raw.githubusercontent.com/${gitHubUsername}/${gitHubRepositoryName}/${gitHubBranchName}/infra/apim-api-apikeyauth-operation-policy-greeting.xml'
                 }
             }
         ]
